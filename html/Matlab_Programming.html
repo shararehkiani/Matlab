@@ -1,0 +1,466 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>MATLAB Programming</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-11-18"><meta name="DC.source" content="Matlab_Programming.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>MATLAB Programming</h1><!--introduction--><p>Every time you create an M-file, you are writing a computer program using the MATLAB programming language.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">User-Defined Functions</a></li><li><a href="#3">(1) Anonymous Functions</a></li><li><a href="#15">(2) Function Files</a></li><li><a href="#20">MATLAB's Path</a></li><li><a href="#22">Relational and Logic Operators</a></li><li><a href="#29">Branching Statements</a></li><li><a href="#38">Loop Statements</a></li><li><a href="#46">Complexity</a></li><li><a href="#49">Techniques to Improve Performance</a></li><li><a href="#58">Debugging Programs</a></li></ul></div><h2>User-Defined Functions<a name="1"></a></h2><p>In computer programming, functions are the principal tools for managing complexity. They allow a complicated program to be broken up into many simpler parts, parts that are easier to understand, easier to write, and easier to test.</p><div><ol><li>Anonymous Functions</li><li>Function Files</li></ol></div><h2>(1) Anonymous Functions<a name="3"></a></h2><div><ul><li>Anonymous functions are a means of creating functions for simple expressions without having to create M-files or subfunctions.</li><li>An anonymous function is a function that is not stored in a program file, but is associated with a variable whose data type is function_handle. Anonymous functions can accept inputs and return outputs, just as standard functions do. However, they can contain only a single executable statement.</li></ul></div><pre>*functionhandle=@(arguments)(expressions)*</pre><div><ul><li>The @ operator creates the handle, and the parentheses () immediately after the @ operator include the function input arguments.</li><li><b>Multiple Anonymous Functions</b> : The expression in an anonymous function can include another anonymous function. This is useful for passing different parameters to a function that you are evaluating over a range of values.</li></ul></div><p><b>Example</b> : Use anonymous function to solve the following equation:</p><p><img src="Matlab_Programming_eq05289389298496185896.png" alt="$$g(c)=\int_{0}^{1} (x^2+cx+1) dx$$"></p><pre class="codeinput">clear <span class="string">all</span>,
+<span class="comment">% First method</span>
+c1=2;
+g_c1=integral(@(x) (x.^2+c1*x+1),0,1)  <span class="comment">% g = integral(fun,xmin,xmax)</span>
+
+<span class="comment">% Second method</span>
+g_c=@(c) (integral(@(x) (x.^2 + c*x + 1),0,1));
+g_c(2)
+</pre><pre class="codeoutput">
+g_c1 =
+
+   2.333333333333333
+
+
+ans =
+
+   2.333333333333333
+
+</pre><div><ul><li><b>Anonymous functions with Multiple Inputs or Outputs</b>: Anonymous functions require that you explicitly specify the input arguments as you would for a standard function, separating multiple inputs with commas. However, you do not explicitly define output arguments when you create an anonymous function. If the expression in the function returns multiple outputs, then you can request them when you call the function. Enclose multiple output variables in square brackets.</li></ul></div><p><b>Example</b>:</p><pre class="codeinput">close <span class="string">all</span>, clear <span class="string">all</span>
+c = 20;
+mygrid = @(x,y) ndgrid((-x:x/c:x),(-y:y/c:y));
+[x,y] = mygrid(pi,2*pi);
+z = sin(x) + cos(y);
+<span class="comment">% surf(x,y,z)</span>
+</pre><div><ul><li><b>Arrays of Anonymous Functions</b>: Although most MATLAB fundamental data types support multidimensional arrays, function handles must be scalars (single elements). However, you can store multiple function handles using a cell array or structure array. The most common approach is to use a cell array</li></ul></div><p><b>Example</b> :</p><pre class="codeinput">clear <span class="string">all</span>
+f = {@(x)x.^2;  @(y)y+10;   @(x,y)x.^2+y+10};
+<span class="comment">% access</span>
+x = 1;
+y = 10;
+
+first=f{1}(x)
+second=f{2}(y)
+third=f{3}(x,y)
+</pre><pre class="codeoutput">
+first =
+
+     1
+
+
+second =
+
+    20
+
+
+third =
+
+    21
+
+</pre><h2>(2) Function Files<a name="15"></a></h2><div><ul><li><b>function [y1,...,yN] = myfun(x1,...,xM)</b> : declares a function named myfun that accepts inputs x1,...,xM and returns outputs y1,...,yN. This declaration statement must be the first executable line of the function.</li><li>Save the function code in a text file with a .m extension. The name of the file should match the name of the first function in the file.</li><li>Valid function names begin with an alphabetic character, and can contain letters, numbers, or underscores.</li><li>Files can include multiple local functions or nested functions.</li><li>Use the end keyword to indicate the end of each function in a file if:</li></ul></div><div><ol><li>Any function in the file contains a nested function</li><li>Any local function in the file uses the end keyword Otherwise, the end keyword is optional.</li></ol></div><p><b>Example</b> :</p><p><img vspace="5" hspace="5" src="multiple_functions.PNG" alt=""> </p><h2>MATLAB's Path<a name="20"></a></h2><p>When a function is called at the command prompt or from within a function, MATLAB must look for the m-file that tells it how to execute that function. When MATLAB is asked to execute a function, it first looks for that function in the working directory or as a subfunction (described in the next section). If it is not in the working directory or a subfunction, MATLAB will look in folders along the MATLAB path until it finds the appropriate m-file to execute.</p><div><ul><li>Home&gt;&gt; set paths</li></ul></div><h2>Relational and Logic Operators<a name="22"></a></h2><div><ul><li><b>Relational Operators</b> : are operators that compare two numbers and produce a true or false result.</li></ul></div><p><img vspace="5" hspace="5" src="relOper.PNG" alt=""> </p><div><ul><li><b>Logic Operators</b>: are operators that compare one or two logical values and produce a true or false result.</li></ul></div><p><img vspace="5" hspace="5" src="logicOper.PNG" alt=""> </p><div><ul><li>Use the <b>&amp; AND</b> operator if it is necessary to ensure that both operands are evaluated in an expression, or if the comparison is between arrays. Otherwise, use the <b>&amp;&amp; AND</b> operator, since the partial evaluation will make the operation faster in the cases where the first operand is false.</li><li>Use the <b>| inclusive OR</b> operator if it is necessary to ensure that both operands are evaluated in an expression, or if the comparison is between arrays. Otherwise, use the <b> operator</b> , since the partial evaluation will make the operation faster in the cases where the first operand is true.</li></ul></div><p><b>Example</b></p><pre class="codeinput">clear <span class="string">all</span>
+[1 2 3] &gt; [3 0 2];
+a=20; b=-2; c=0;d=1;
+a&gt; b;
+a&gt;b &amp;&amp; c&gt;d;
+a==b ;
+~~b;
+</pre><h2>Branching Statements<a name="29"></a></h2><div><ul><li><b>If-Else Statement</b>; is a code construct that executes blocks of code only if certain conditions are met. These conditions are represented as logical expressions.</li></ul></div><p><img vspace="5" hspace="5" src="ifElse.PNG" alt=""> </p><div><ul><li><b>Switch-Case Statement</b>: It permits an a particular code block is selected to execute based on the value of a single integer, character, or logical expression.</li></ul></div><p><img vspace="5" hspace="5" src="switch_case.PNG" alt=""> </p><div><ul><li><b>Try-Catch Statement</b> : is a special form of branching construct designed to trap errors. Ordinarily, when a MATLAB program encounters an error while running, the program aborts. The try/catch construct modifies this default behavior. If an error occurs in a statement in the try block of this construct, then instead of aborting, the code in the catch block is executed and the program keeps running.</li></ul></div><p><img vspace="5" hspace="5" src="try_catch.PNG" alt=""> </p><p><b>Example</b> : The following program creates an array and asks the user to specify an element of the array to display.</p><pre class="codeinput">clear <span class="string">all</span>
+a = [ 1 -3 2 5]; <span class="comment">% Initialize array</span>
+<span class="comment">%{
+</span><span class="comment">try
+</span><span class="comment">    % Try to display an element
+</span><span class="comment">    index = input('Enter subscript of element to display: ');
+</span><span class="comment">    disp( ['a(' int2str(index) ') = ' num2str(a(index))] );
+</span><span class="comment">catch
+</span><span class="comment">    % If we get here an error occurred
+</span><span class="comment">    disp( ['Illegal subscript: ' int2str(index)] );
+</span><span class="comment">end
+</span><span class="comment">%}</span>
+</pre><h2>Loop Statements<a name="38"></a></h2><div><ul><li><b>For-Loops (definite loops)</b> : is a sequence of instructions that is repeated, or iterated, for every value of a looping array. The variable that holds the current value of the looping array is called looping variable. Sometimes for-loops are referred to as definite loops because they have a predefined begin and end.</li></ul></div><p><img vspace="5" hspace="5" src="for_loop.PNG" alt=""> </p><p><b>Example</b> : Write a program to count the number of E's in a string</p><pre class="codeinput">S=<span class="string">'Enter'</span>;
+count=0;
+<span class="keyword">for</span> i=1:length(S)
+    <span class="keyword">if</span> strcmp(S(i),<span class="string">'e'</span>)|| strcmp(S(i),<span class="string">'E'</span>)
+        count=count+1;
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+count
+</pre><pre class="codeoutput">
+count =
+
+     2
+
+</pre><div><ul><li><b>While-Loops (Indefinite Loops)</b> : is a set of instructions that is repeated as long as the associated logical expression is true.</li></ul></div><p><img vspace="5" hspace="5" src="while_loop.PNG" alt=""> </p><div><ul><li><b>Breaking from a loop</b> : Inside either type of loop, you can use the command <b>break</b> to tell MATLAB to stop running the loop and skip to the next line after the end of the loop.</li></ul></div><h2>Complexity<a name="46"></a></h2><p>The complexity of a function is the relationship between the size of the input and the difficulty of running the function to completion. The size of the input is usually denoted by n.</p><p><img vspace="5" hspace="5" src="complexity.PNG" alt=""> </p><div><ul><li>As n gets large, the highest power dominates; therefore, only the highest power term is included in Big-O notation.</li><li>In the previous example, O(n^2)</li><li><b>Matlab Profiler</b> : to evaluate the you code.</li></ul></div><h2>Techniques to Improve Performance<a name="49"></a></h2><div><ul><li><b>Code Structure</b></li></ul></div><div><ol><li>Use functions instead of scripts. Functions are generally faster.</li><li>Prefer local functions over nested functions.</li><li>Use modular programming. To avoid large files and files with infrequently accessed code, split your code into simple and cohesive functions. This practice can decrease first-time run costs.</li></ol></div><div><ul><li><b>Programming Practices for Performance</b></li></ul></div><div><ol><li><b>Preallocate</b> &#8212; Instead of continuously resizing arrays</li><li><b>Vectorize</b> &#8212; Instead of writing loop-based code, consider using MATLAB matrix and vector operations.</li><li>Place independent operations outside loops</li><li>Create new variables if data type changes</li><li>Use short-circuit operators &#8212; Use short-circuiting logical operators, &amp;&amp; and  when possible. Short-circuiting is more efficient because MATLAB evaluates the second operand only when the result is not fully determined by the first operand.</li><li>Avoid global variables</li></ol></div><p><b>Example</b>: (Vectorizing Code) Compute the cumulative sum of a vector at every fifth element:</p><pre class="codeinput">clear <span class="string">all</span>
+x = 1:10000;
+ylength = (length(x) - mod(length(x),5))/5;
+y(1:ylength) = 0;
+<span class="keyword">for</span> n= 5:5:length(x)
+    y(n/5) = sum(x(1:n));
+<span class="keyword">end</span>
+<span class="comment">% using vectorization</span>
+xsums = cumsum(x);
+y = xsums(5:5:length(x));
+</pre><p><b>Example</b> :</p><pre class="codeinput">clear <span class="string">all</span>
+x = [2 -1 0 3 NaN 2 NaN 11 4 Inf];
+xvalid = x(~isnan(x))
+</pre><pre class="codeoutput">
+xvalid =
+
+     2    -1     0     3     2    11     4   Inf
+
+</pre><h2>Debugging Programs<a name="58"></a></h2><div><ul><li>use the <b>&#8220;Set/Clear Breakpoint&#8221;</b> option in Editor</li><li>use <b>M-Lint</b> hints: A final critical feature is a tool called M-Lint. M-Lint examines a MATLAB file and looks for potential problems. If it finds a problem, it shades that part of the code in the Editor. If the developer places the mouse cursor over the shaded area, a popup will appear describing the problem so that it can be fixed.</li></ul></div><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%%  MATLAB Programming
+% Every time you create an M-file, you are writing a computer program using the MATLAB
+% programming language.
+
+
+
+%% User-Defined Functions
+% In computer
+% programming, functions are the principal tools for managing complexity. They allow a
+% complicated program to be broken up into many simpler parts, parts that are easier to
+% understand, easier to write, and easier to test.
+%%
+% 
+% # Anonymous Functions
+% # Function Files
+% 
+%% (1) Anonymous Functions
+% * Anonymous functions are a means of creating functions for simple
+% expressions without having to create M-files or subfunctions.
+% * An anonymous function is a function that is not stored in a program file, but is associated with a variable whose data type is function_handle. Anonymous functions can accept inputs and return outputs, just as standard functions do. However, they can contain only a single executable statement.
+
+
+%%
+%  *functionhandle=@(arguments)(expressions)*
+%%
+% * The @ operator creates the handle, and the parentheses () immediately after the @ operator include the function input arguments.
+% * *Multiple Anonymous Functions* : The expression in an anonymous function can include another anonymous function. This is useful for passing different parameters to a function that you are evaluating over a range of values.
+%%
+% *Example* : Use anonymous function to solve the following equation:
+%%
+% 
+% $$g(c)=\int_{0}^{1} (x^2+cx+1) dx$$
+% 
+
+%% 
+clear all,
+% First method
+c1=2;
+g_c1=integral(@(x) (x.^2+c1*x+1),0,1)  % g = integral(fun,xmin,xmax)
+
+% Second method
+g_c=@(c) (integral(@(x) (x.^2 + c*x + 1),0,1));
+g_c(2)
+%%
+% * *Anonymous functions with Multiple Inputs or Outputs*: Anonymous
+% functions require that you explicitly specify the input arguments as you would for a standard function, separating multiple inputs with commas. However, you do not explicitly define output arguments when you create an anonymous function. If the expression in the function returns multiple outputs, then you can request them when you call the function. Enclose multiple output variables in square brackets.
+%% 
+% *Example*:
+%% 
+close all, clear all
+c = 20;
+mygrid = @(x,y) ndgrid((-x:x/c:x),(-y:y/c:y));
+[x,y] = mygrid(pi,2*pi);
+z = sin(x) + cos(y);
+% surf(x,y,z)
+%% 
+% * *Arrays of Anonymous Functions*: 
+% Although most MATLAB fundamental data types support multidimensional arrays, function handles must be scalars (single elements). However, you can store multiple function handles using a cell array or structure array. The most common approach is to use a cell array
+
+
+%%
+% *Example* :
+%%
+clear all
+f = {@(x)x.^2;  @(y)y+10;   @(x,y)x.^2+y+10};
+% access
+x = 1;
+y = 10;
+
+first=f{1}(x)
+second=f{2}(y)
+third=f{3}(x,y)
+
+%% (2) Function Files
+
+%%
+% 
+% * *function [y1,...,yN] = myfun(x1,...,xM)* : declares a function named myfun that accepts inputs x1,...,xM and returns outputs y1,...,yN. This declaration statement must be the first executable line of the function.
+% * Save the function code in a text file with a .m extension. The name of the file should match the name of the first function in the file. 
+% * Valid function names begin with an alphabetic character, and can contain letters, numbers, or underscores.
+% * Files can include multiple local functions or nested functions. 
+% * Use the end keyword to indicate the end of each function in a file if:
+%%
+% # Any function in the file contains a nested function
+% # Any local function in the file uses the end keyword
+% Otherwise, the end keyword is optional.
+
+
+%%
+% *Example* :
+%%
+% 
+% <<multiple_functions.PNG>>
+% 
+%% MATLAB's Path
+% When a function is called at the command prompt or from within a function, MATLAB must look for
+% the m-file that tells it how to execute that function.
+% When MATLAB is asked to execute a function, it first looks for that function in the working directory
+% or as a subfunction (described in the next section). If it is not in the working directory or a subfunction,
+% MATLAB will look in folders along the MATLAB path until it finds the appropriate m-file to execute.
+
+%%
+% 
+% * Home>> set paths
+% 
+
+%% Relational and Logic Operators
+%%
+% 
+% * *Relational Operators* : are operators that compare two numbers and
+% produce a true or false result.
+%%
+% 
+% <<relOper.PNG>>
+% 
+%%
+% * *Logic Operators*: are operators that compare one or two logical values
+% and produce a true or false result.
+% 
+%%
+% 
+% <<logicOper.PNG>>
+% 
+%% 
+% 
+% * Use the *& AND* operator if it is necessary to ensure that both operands
+% are evaluated in an expression, or if the comparison is between arrays.
+% Otherwise, use the *&& AND* operator, since the partial evaluation will
+% make the operation faster in the cases where the first operand is false.
+% * Use the *| inclusive OR* operator if it is necessary to ensure that both
+% operands are evaluated in an expression, or if the comparison is between
+% arrays. Otherwise, use the *|| operator* , since the partial evaluation will
+% make the operation faster in the cases where the first operand is true.
+% 
+
+%%
+% *Example*
+clear all
+[1 2 3] > [3 0 2];
+a=20; b=-2; c=0;d=1;
+a> b;
+a>b && c>d;
+a==b ;
+~~b;
+
+
+
+%% Branching Statements
+%%
+% 
+% * *If-Else Statement*; is a code construct that executes blocks of code only if certain conditions are met. These conditions are represented as logical expressions.
+% 
+%%
+% 
+% <<ifElse.PNG>>
+% 
+%%
+% 
+% * *Switch-Case Statement*: It permits an a particular code block is
+% selected to execute based on the value of a single integer, character, or logical expression.
+% 
+%%
+% 
+% <<switch_case.PNG>>
+% 
+%% 
+% * *Try-Catch Statement* : is a special form of branching construct
+% designed to trap errors. Ordinarily, when a MATLAB program encounters an
+% error while running, the program aborts. The try/catch construct modifies
+% this default behavior. If an error occurs in a statement in the try block
+% of this construct, then instead of aborting, the code in the catch block
+% is executed and the program keeps running.
+
+%%
+% 
+% <<try_catch.PNG>>
+% 
+
+
+%%
+% *Example* : The following program
+% creates an array and asks the user to specify an element of the array to display.
+%%
+clear all
+a = [ 1 -3 2 5]; % Initialize array
+%{
+try
+    % Try to display an element
+    index = input('Enter subscript of element to display: ');
+    disp( ['a(' int2str(index) ') = ' num2str(a(index))] );
+catch
+    % If we get here an error occurred
+    disp( ['Illegal subscript: ' int2str(index)] );
+end
+%}
+
+%% Loop Statements
+%%
+% 
+% * *For-Loops (definite loops)* : is a sequence of instructions that is repeated, or iterated, for every value of a looping array.
+% The variable that holds the current value of the looping array is called looping variable. Sometimes
+% for-loops are referred to as definite loops because they have a predefined begin and end.
+%%
+% 
+% <<for_loop.PNG>>
+% 
+%% 
+% *Example* : Write a program to count the number of E's in a string
+%%
+S='Enter';
+count=0;
+for i=1:length(S)
+    if strcmp(S(i),'e')|| strcmp(S(i),'E')
+        count=count+1;
+    end
+end
+count
+
+%%
+% * *While-Loops (Indefinite Loops)* : is a set of instructions that is
+% repeated as long as the associated logical expression is true.
+
+%%
+% 
+% <<while_loop.PNG>>
+% 
+%% 
+% * *Breaking from a loop* : Inside either type of loop, you can use the
+% command *break* to tell MATLAB to stop running the loop and skip to the next line after the end of the loop.
+
+%% Complexity
+% The complexity of a function is the relationship between the size of the input and the difficulty of
+% running the function to completion. The size of the input is usually denoted by n.
+%%
+% 
+% <<complexity.PNG>>
+% 
+%%
+% * As n gets large, the highest power dominates; therefore, only the
+% highest power term is included in Big-O notation.
+% * In the previous example, O(n^2)
+% * *Matlab Profiler* : to evaluate the you code.
+
+%% Techniques to Improve Performance
+%%
+% 
+% * *Code Structure*
+%%
+% 
+% # Use functions instead of scripts. Functions are generally faster.
+% # Prefer local functions over nested functions.
+% # Use modular programming. To avoid large files and files with infrequently accessed code, split your code into simple and cohesive functions. This practice can decrease first-time run costs.
+%%
+% 
+% * *Programming Practices for Performance*
+% 
+%%
+% 
+% # *Preallocate* — Instead of continuously resizing arrays
+% # *Vectorize* — Instead of writing loop-based code, consider using MATLAB matrix and vector operations. 
+% # Place independent operations outside loops
+% # Create new variables if data type changes
+% # Use short-circuit operators — Use short-circuiting logical operators, && and || when possible. Short-circuiting is more efficient because MATLAB evaluates the second operand only when the result is not fully determined by the first operand. 
+% # Avoid global variables 
+
+%% 
+% *Example*: (Vectorizing Code) Compute the cumulative sum of a vector at every fifth element:
+%%
+clear all
+x = 1:10000;
+ylength = (length(x) - mod(length(x),5))/5;
+y(1:ylength) = 0;
+for n= 5:5:length(x)
+    y(n/5) = sum(x(1:n));
+end 
+% using vectorization
+xsums = cumsum(x);
+y = xsums(5:5:length(x)); 
+%%
+% *Example* :
+%%
+clear all
+x = [2 -1 0 3 NaN 2 NaN 11 4 Inf];
+xvalid = x(~isnan(x))
+
+%% Debugging Programs
+% 
+% * use the *“Set/Clear Breakpoint”* option in Editor
+% * use *M-Lint* hints: A final critical feature is a tool called M-Lint.
+% M-Lint examines a MATLAB file and looks for potential problems. If it
+% finds a problem, it shades that part of the code in the Editor. If the
+% developer places the mouse cursor over the shaded area, a popup will
+% appear describing the problem so that it can be fixed.
+
+
+
+##### SOURCE END #####
+--></body></html>
